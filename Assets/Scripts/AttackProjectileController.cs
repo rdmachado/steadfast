@@ -30,8 +30,7 @@ public class AttackProjectileController : MonoBehaviour {
             {
                 Vector2 forceDirection = new Vector2(distanceXForceRatio.Evaluate(Vector2.Distance(g.transform.position, transform.position)), distanceYForceRatio.Evaluate(Vector2.Distance(g.transform.position, transform.position)));
 
-                if (Mathf.Sign(g.transform.position.x - transform.position.x) < 0)
-                    forceDirection.x *= -1;
+                forceDirection.x *= Mathf.Sign(g.transform.position.x - transform.position.x);
 
                 g.GetComponent<Rigidbody2D>().AddForce(forceDirection * (baseExplosionForce + (chargeAmount / 100 * 400)), ForceMode2D.Force);
                 g.GetComponent<GoblinController>().ApplyDamage(1f);
